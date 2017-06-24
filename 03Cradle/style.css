@@ -1,0 +1,60 @@
+body{
+  background-color: grey;
+}
+.pen{
+  background-color: purple;
+  position: absolute;
+  height : 180px;
+  width:220px;
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  border-radius: 5%;
+  transform: translate(-50%,-50%);
+  border-top:15px solid orange;
+}
+.pend{
+  display: flex;
+  flex : 1;
+  position: absolute;
+  padding: 120px 0 0 10px ;
+}
+.ball{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: green;
+  transform-origin: 50% -300%;
+  position: relative;
+}
+.ball::before{
+  content: '';
+  height: 120px;
+  width: 2px;
+  top: -120px;
+  left: 18px;
+  position: absolute;
+  background-color: white;
+}
+.ball.first{
+  animation: able1 1s alternate ease-in infinite;
+}
+@keyframes able1 {
+0%{
+  transform: rotate(35deg);
+}
+50%{
+  transform: rotate(0deg);
+}
+}
+.ball.last{
+  animation: able2 1s alternate ease-out infinite;
+}
+@keyframes able2 {
+50%{
+  transform: rotate(0deg);
+}
+100%{
+  transform: rotate(-35deg);
+}
+}
