@@ -1,0 +1,16 @@
+body{
+  background: url(rolex.jpg) no-repeat center center fixed;
+  background-size:cover;
+}
+.hero{
+  color: #fff;
+  line-spacing:-0.5em;
+  text-align: center;
+  margin-top: 20%;
+  font-size: 75px;
+  font-family: 'Revalia', cursive;
+}
+.ima{
+  height:100px;
+  width: 200px;
+}
