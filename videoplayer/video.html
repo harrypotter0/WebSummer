@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Revalia" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+  <style media="screen">
+#videobox{
+width: 610px;  margin: 10px;margin: 0px auto; background: green;
+}
+#videocontrolbar{
+  padding: 10px;background: grey;
+}
+#seekslider{
+  width: 300px;
+}
+#volslider{
+  width: 80px;
+}
+#playpause{
+  background-image: url(pause.png);
+background-size: cover;
+  height: 30px;
+  width: 30px;
+  border: none;
+  cursor:pointer;
+  opacity: 0.5;
+}
+#playpause:hover{opacity: 1;}
+
+#mutetext{
+  background-image: url(mute.png);
+background-size: cover;
+  height: 30px;
+  width: 30px;
+  border: none;
+  cursor:pointer;
+  opacity: 0.5;
+}
+#mutetext:hover{opacity: 1;}
+
+#fullbtn{
+  background-image: url(fullscreen.png);
+  background-size: cover;
+  height: 30px;
+  width: 30px;
+  border: none;
+  cursor:pointer;
+  opacity: 0.5;
+}
+#fullbtn:hover{opacity: 1;}
+
+input[type='range']{
+    -webkit-appearance:none !important;
+  background: red;
+  border:yellow solid 1px;
+  height: 4px;
+}
+
+input[type='range']:: -webkit-slider-thumb{
+  -webkit-appearance:none !important;
+  background:orange;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  cursor:pointer;
+}
+
+  </style>
+<script type="text/javascript">
+var playbtn,vid,seekbar,curtext,durtext,mutetext,volslider;
+function initializePlayer(){
+//object referencing
+vid=document.getElementById("myvideo");
+playbtn=document.getElementById("playpause");
+seekslider=document.getElementById("seekslider");
+curtext=document.getElementById("curtext");
+durtext=document.getElementById("durtext");
+mutetext=document.getElementById("mutetext");
+volslider=document.getElementById("volslider");
+fullbtn=document.getElementById("fullbtn");
+//event listener
+playbtn.addEventListener("click",videocontroller,false);
+seekslider.addEventListener("change",vidseek,false);
+vid.addEventListener("timeupdate",updatetime,false);
+mutetext.addEventListener("click",vidmute,false);
+volslider.addEventListener("change",volseek,false);
+fullbtn.addEventListener("click",vidfull,false);
+}
+
+window.onload=initializePlayer;
+
+function videocontroller() {
+if (vid.paused) {
+  vid.play();
+  playbtn.style.background="url('pause.png')";
+  playbtn.style.backgroundSize="cover";
+}
+else {
+ vid.pause();
+ playbtn.style.background="url('play.png')";
+ playbtn.style.backgroundSize="cover";
+}
+}
+
+function vidseek(){
+  var seekto=vid.duration*(seekslider.value/100);
+  vid.currentTime=seekto;
+}
+
+function updatetime(){
+  var nt=(vid.currentTime/vid.duration)*100;
+  seekslider.value=nt;
+var curmins=Math.floor(vid.currentTime/60);
+var cursecs=Math.floor(vid.currentTime-curmins/60);
+var durmins=Math.floor(vid.duration/60);
+var dursecs=Math.floor(vid.duration-durmins/60);
+if(cursecs<10){cursecs="0"+cursecs;}
+if(curmins<10){curmins="0"+curmins;}
+if(dursecs<10){dursecs="0"+dursecs;}
+if(durmins<10){durmins="0"+durmins;}
+curtext.innerHTML=curmins+":"+cursecs;
+durtext.innerHTML=durmins+":"+dursecs;
+if(vid.duration==vid.currentTime){
+  playbtn.style.background="url('replay.png')";
+  playbtn.style.backgroundSize="cover";
+}
+
+}
+function vidmute(){
+  if (vid.muted) {
+    vid.muted=false;
+    volslider.value=100;
+    mutetext.style.background="url('mute.png')";
+    mutetext.style.backgroundSize="cover";
+  }
+  else {
+   vid.muted=true;
+   volslider.value=0;
+   mutetext.style.background="url(sound.png)";
+   mutetext.style.backgroundSize="cover";
+  }
+}
+function volseek(){
+  vid.volume=volslider.value/100;
+}
+function vidfull(){
+  if(vid.requestFullScreen){
+    vid.FullScreenButton();
+  }else if (vid.webkitRequestFullScreen) {
+    vid.webkitRequestFullScreen();
+  }else if(vid.mozRequestFullScreen){
+    vid.mozRequestFullScreen();
+  }
+}
+  </script>
+</head>
+<body>
+<div id="videobox">
+    <video id="myvideo" poster="thumbnail.png" width="610" height="300" autoplay>
+      <source src="sample.mp4">
+    </video>
+    <div id="videocontrolbar">
+    <button id="playpause"></button>
+    <input id="seekslider" type="range" min="0" max="100" value="0" step="1" >
+    <span id="curtext">00:00</span>/<span id="durtext">00:00</span>
+    <button id="mutetext"></button>
+    <input id="volslider" type="range" min="0" max="100" value="100" step="1">
+<button id="fullbtn"></button>
+    </div>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+</html>
