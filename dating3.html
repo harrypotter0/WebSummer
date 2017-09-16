@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dating Website</title>
+</head>
+<style>
+fieldset{
+    background: lightyellow;
+    border: 10px solid yellow;
+    margin-bottom:10px;
+    width: 720px;
+}
+label{
+    width: 180px;
+    display:inline-block;
+    vertical-align:top;
+    text-align: right;
+    width:auto;
+}
+textarea{
+    width:360px ;
+    height:50px;
+}
+label:hover { font-size:40px }
+input:hover { font-size:40px }
+
+</style>
+<body>
+    <h1>Dating Website</h1>
+<form action="http://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php" method="get" enctype="multipart/form-data">
+<fieldset>
+    <legend>Your Face</legend>
+    <label for="uploadthefile">Your Image:</label>
+    <input type="file" name="uploadthefile" required><br>
+    <label for="preview">Image preview:</label><br>
+    <img id="preview"><br>
+</fieldset><br>
+
+<fieldset>
+    <legend>Your General Details</legend>
+    <label for="uploadthefile">Your Image:</label>
+    <input type="text" name="uploadthefile"><br>
+    <label for="it3">Gender:</label>
+        <input type="radio" name="it3" value="r1" required>Male
+        <input type="radio" name="it3" value="r2" required>Female
+    <br>
+    <label for="number">Age:</label>
+    <input type="number" min="0" max="99" step="1" value="18" name="number" required><br>
+    <label for="date">Date Of Birth:</label>
+    <input type="date" name="date"><br>
+    <label for="color">Favourite Color:</label>
+    <input type="color" name="color"><br>
+    <label for="it5">Which Country:</label>
+    <select name="it5" id="it5">
+        <option value=""></option>
+        <option value="">India</option>
+        <option value="">U.S.</option>
+        <option value="">Russia</option>
+        <option value="">China</option>
+        <option value="">Britain</option>
+    </select><br>
+</fieldset><br>
+
+<fieldset>
+    <legend>Your Indicators</legend>
+    <label for="r1">Height:</label>
+    Short<input type="range" min="0" max="100" step="1" value="50" name="r1">Tall<br>
+    <label for="r2">Salary:</label>
+    Poor<input type="range" min="0" max="100" step="1" value="50" name="r2">Rich<br>
+</fieldset><br>
+
+<fieldset>
+    <legend>Your Contact Information:</legend>
+    <label for="e1">Email:</label>
+    <input type="email" name="e1" required><br>
+    <label for="m1">Mobile:</label>
+    <input type="tel" name="m1"><br>
+    <label for="it6">Email:</label>
+    <textarea name="it6" rows="1" cols="60" placeholder="Enter Email">
+    </textarea>
+    <br>
+    <label for="it2">Method to contact you:</label>
+        <input type="checkbox" name="it2" value="c1" required>Email
+        <input type="checkbox" name="it2" value="c2" required>Whatsupp
+        <input type="checkbox" name="it2" value="c3" required>In-appchat
+    <br>
+</fieldset><br>
+<br>
+    <input type="submit" value="Submit">
+</form>
+<script src="https://www.cse.ust.hk/~rossiter/dating_web_site.js"></script>
+</body>
+</html>
