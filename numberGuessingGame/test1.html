@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <script>
+       var i=2010,res=0,arr=[];
+       for(;i<=2017;i++){
+          res=confirm(+i+" year good for you ?");
+          if(!res)continue;
+          arr.push(i);
+       }
+       alert("your good years are"+"\n\n"+arr);
+       var num=[1,2,3,4,5];
+       num.forEach(function(elem,index,num){
+           num[index]*=elem;
+       });
+       alert(num+"\n\n");
+       var square =function(x){return x*x;}
+       var result=num.map(square);
+       alert("using map"+result);
+    </script>
+</head>
+</html>
